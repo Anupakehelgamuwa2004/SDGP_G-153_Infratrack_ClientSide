@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infratrack/screens/login_screen/login.dart';
+import 'package:infratrack/screens/sign_up_screen/sing_up.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                 // Navigate to SignUpScreen
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const SignUpScreen()),
                 );
               },
             ),
