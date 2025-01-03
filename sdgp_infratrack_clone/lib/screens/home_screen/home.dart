@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+// Import the file where your IssueNearbyScreen is located
+import 'package:infratrack/screens/issue_nearby_screen/issue_nearby.dart';
+// Example import for SignUpScreen. Adjust path as needed.
 import 'package:infratrack/screens/sign_up_screen/sing_up.dart';
 
-
+/// This is the HomeScreen with a list of [IssueCard] widgets.
+/// Tapping on "Pothole in Nugegoda" navigates to the IssueNearbyScreen.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -9,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFE6F4FF), // Light blue background
+
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -31,17 +36,20 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.account_circle_outlined,
-                size: 30, color: Colors.black87),
+            icon: const Icon(
+              Icons.account_circle_outlined,
+              size: 30,
+              color: Colors.black87,
+            ),
             onPressed: () {
-                      // Navigate to Home Screen on Login
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const ProfileScreen(),
-                      //   ),
-                      // );
-                    },
+              // Example: Navigate to a profile screen
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const ProfileScreen(),
+              //   ),
+              // );
+            },
           ),
         ],
       ),
@@ -75,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
               onTap: () {
-                // Navigate to SignUpScreen
+                // Navigate to SignUpScreen or any other screen
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const SignUpScreen()),
@@ -91,7 +99,7 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Logo and Tagline
+            // Logo (Adjust as needed)
             Center(
               child: Column(
                 children: [
@@ -106,17 +114,33 @@ class HomeScreen extends StatelessWidget {
             // Issue Cards
             Expanded(
               child: ListView(
-                children: const [
+                children: [
+                  // First issue card (navigates to IssueNearbyScreen)
                   IssueCard(
                     title: 'Pothole in Nugegoda',
                     description:
                         'A blocked drainage system in Kohuwala is leading to waterlogging during rains.',
+                    onTap: () {
+                      // Navigate to IssueNearbyScreen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const IssueNearbyScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
+
+                  // Another example card
                   IssueCard(
                     title: 'Overgrown Tree',
                     description:
                         'A blocked drainage system in Kohuwala is leading to waterlogging during rains.',
+                    onTap: () {
+                      // You can navigate to the same screen or a different one
+                      // For now, it does nothing.
+                    },
                   ),
                 ],
               ),
@@ -136,10 +160,10 @@ class HomeScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.home_outlined, size: 28),
               onPressed: () {
-                // Navigate to Home Screen
+                // Already on Home Screen
               },
             ),
-            const SizedBox(width: 40), // Spacing for the FAB
+            const SizedBox(width: 40), // spacing for the FAB
             IconButton(
               icon: const Icon(Icons.history, size: 28),
               onPressed: () {
@@ -161,10 +185,7 @@ class HomeScreen extends StatelessWidget {
           onPressed: () {
             // Add functionality to add a new report
           },
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.add, size: 30),
-          ),
+          child: const Icon(Icons.add, size: 30),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -172,54 +193,59 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Custom Widget for Issue Card
+/// Custom Widget for Issue Card
 class IssueCard extends StatelessWidget {
   final String title;
   final String description;
+  final VoidCallback? onTap;
 
   const IssueCard({
     super.key,
     required this.title,
     required this.description,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A2B43), // Dark background for card
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1A2B43), // Dark background for card
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Description',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Colors.white70,
+            const SizedBox(height: 8),
+            const Text(
+              'Description',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.white70,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            description,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.white70,
+            const SizedBox(height: 4),
+            Text(
+              description,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.white70,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
