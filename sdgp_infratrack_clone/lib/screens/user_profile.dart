@@ -77,7 +77,7 @@ class UserProfileScreen extends StatelessWidget {
           // Logout Button
           ElevatedButton.icon(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, "/login");// Add logout logic here
+              Navigator.pushReplacementNamed(context, "/login");
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
@@ -97,15 +97,15 @@ class UserProfileScreen extends StatelessWidget {
     );
   }
 
-  // Custom Row for Displaying User Information
+  // Custom Row for Displaying User Information (All Fields Same Size)
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0), // Adjusted padding for uniform spacing
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
               color: Colors.grey.shade300,
               borderRadius: BorderRadius.circular(10),
@@ -121,6 +121,7 @@ class UserProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Container(
+            width: double.infinity, // Makes all fields the same width
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: const Color(0xFF2C3E50),
