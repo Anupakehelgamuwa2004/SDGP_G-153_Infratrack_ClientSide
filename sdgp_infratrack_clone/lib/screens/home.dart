@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.account_circle, color: Colors.black),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, "/profile");},
+              Navigator.pushReplacementNamed(context, "/profile");
+            },
           ),
         ],
       ),
@@ -91,7 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Custom Issue Report Card Widget
-  Widget _buildIssueCard(String title, String description, int likes, int dislikes) {
+  Widget _buildIssueCard(
+      String title, String description, int likes, int dislikes) {
     return Card(
       color: const Color(0xFF2C3E50),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -139,7 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const Icon(Icons.thumb_down, color: Colors.white),
                     const SizedBox(width: 5),
-                    Text("$dislikes", style: const TextStyle(color: Colors.white)),
+                    Text("$dislikes",
+                        style: const TextStyle(color: Colors.white)),
                   ],
                 ),
               ],
