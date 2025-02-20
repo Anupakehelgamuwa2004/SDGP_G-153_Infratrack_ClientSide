@@ -103,7 +103,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
         bottomNavigationBar: BottomNavigation(
           selectedIndex: 1,
           onItemTapped: (index) {
-            // Handle navigation changes
+            // Handle navigation changes if needed
           },
         ),
       ),
