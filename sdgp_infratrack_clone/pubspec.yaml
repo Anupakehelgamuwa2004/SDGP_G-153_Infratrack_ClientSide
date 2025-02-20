@@ -31,9 +31,10 @@ flutter:
     - assets/png/icon.png
     - assets/png/map_placeholder.png
     - assets/png/pothole.png
+    
 
 
 flutter_icons:
-  image_path: "assets/png/icon.png"    # Path to your app icon image
+  image_path: "assets/png/App_Icon_2.png"    # Path to your app icon image
   android: true
   ios: true
