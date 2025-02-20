@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infratrack/admin_screens/Gov_issue_description.dart';
-import 'package:infratrack/admin_screens/Government_issue_screen%20low.dart';
-import 'package:infratrack/admin_screens/Government_issue_screen_high.dart';
-import 'package:infratrack/admin_screens/Government_issue_screen_mid.dart';
 import 'package:infratrack/screens/Issue_Reported.dart';
 import 'package:infratrack/screens/Problem_Page_Reported.dart';
-import 'package:infratrack/screens/Report_Issue_Page.dart';
 import 'package:infratrack/screens/history.dart';
 import 'package:infratrack/screens/issue_nearby.dart';
 import 'package:infratrack/screens/issue_rejected.dart';
@@ -48,10 +43,10 @@ class MyApp extends StatelessWidget {
             const RecoverPasswordOtpScreen(), // OTP Screen
         "/reset_password": (context) => const ResetPasswordScreen(),
         "/history": (context) => HistoryScreen(),
-        "/issue_reported": (context) => IssueReportedScreen(),
+        "/issue_reported": (context) => const IssueReportedScreen(),
         "/problem_reported": (context) => const ProblemPageReportedScreen(),
         "/issue_nearby": (context) => const IssuesNearbyScreen(),
-        "/issue_rejected": (context) => IssueRejectedScreen(),
+        "/issue_rejected": (context) => const IssueRejectedScreen(),
         // "/gov_issue_description": (context) => GovIssueDescription(),
         // "/gov_issue_high": (context) =>  GovernmentIssueScreenHigh(),
 
