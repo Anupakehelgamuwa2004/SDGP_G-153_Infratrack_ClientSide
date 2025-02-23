@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infratrack/components/bottom_navigation.dart';
+import 'package:sdgp_infratrack_clone/components/bottom_navigation.dart';
+
 
 class GovernmentIssueScreenLow extends StatelessWidget {
   const GovernmentIssueScreenLow({super.key});
