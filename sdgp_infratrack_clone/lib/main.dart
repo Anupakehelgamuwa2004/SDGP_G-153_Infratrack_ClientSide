@@ -6,9 +6,7 @@ import 'package:infratrack/screens/Government_issue_screen_mid.dart';
 import 'package:infratrack/screens/home.dart';
 import 'package:infratrack/screens/login.dart';
 
-
 // Placeholder for Reset Password
-
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +16,6 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -33,16 +30,12 @@ class MyApp extends StatelessWidget {
       home: const LoginScreen(), // Default starting screen
       routes: {
         "/login": (context) => const LoginScreen(),
-        "/home": (context) => const HomeScreen(),
-        "/issue_description" : (context) => const GovernmentIssueDescriptionScreen(),
-        "/Gov_high" : (context) => const GovernmentIssueScreenHigh(),
-        "/Gov_Low" : (context) => const GovernmentIssueScreenLow(),
-        "/Gov_Mid" : (context) => const GovernmentIssueScreenMid(),
-        
-
-    
-
-
+        "/home": (context) => HomeScreen(),
+        "/issue_description": (context) =>
+            const GovernmentIssueDescriptionScreen(),
+        "/Gov_high": (context) => const GovernmentIssueScreenHigh(),
+        "/Gov_Low": (context) => const GovernmentIssueScreenLow(),
+        "/Gov_Mid": (context) => const GovernmentIssueScreenMid(),
       },
     );
   }

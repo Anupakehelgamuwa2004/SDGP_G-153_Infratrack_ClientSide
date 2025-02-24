@@ -29,7 +29,3 @@ flutter:
     
 
 
-flutter_icons:
-  image_path: "assets/png/App_Icon_2.png"    # Path to your app icon image
-  android: true
-  ios: true
