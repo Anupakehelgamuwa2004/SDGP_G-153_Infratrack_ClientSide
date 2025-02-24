@@ -1,201 +1,140 @@
 import 'package:flutter/material.dart';
-import '../components/bottom_navigation.dart'; // Import the navigation bar
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  HomeScreenState createState() => HomeScreenState();
+void main() {
+  runApp(const InfraTrackApp());
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class InfraTrackApp extends StatelessWidget {
+  const InfraTrackApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Infra Track',
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
+      routes: {
+        '/add_report': (context) => const AddReportScreen(),
+        // Add other routes/screens if needed
+      },
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  bool _isDarkMode = false; // State variable for dark mode toggle
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, "/home");
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, "/history");
-    }
-    // Add more navigation destinations as needed.
+    // Add logic to switch screens if desired:
+    // if (index == 0) { /* Show home content */ }
+    // else if (index == 1) { /* Show history content */ }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Home page background remains white.
-      // Drawer for menu options.
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            // Drawer header with your original dark color.
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Color(0xFF2C3E50),
-              ),
-              child: Center(
-                child: Text(
-                  'Menu',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall!
-                      .copyWith(color: Colors.white),
-                ),
-              ),
-            ),
-            // Dark Mode Toggle.
-            ListTile(
-              leading: const Icon(Icons.brightness_6),
-              title: const Text("Dark Mode"),
-              trailing: Switch(
-                value: _isDarkMode,
-                onChanged: (bool value) {
-                  setState(() {
-                    _isDarkMode = value;
-                    // TODO: Integrate your dark mode logic here.
-                  });
-                },
-              ),
-            ),
-            // Profile Navigation.
-            ListTile(
-              leading: const Icon(Icons.account_circle),
-              title: const Text("Profile"),
-              onTap: () {
-                Navigator.pop(context); // Close the drawer.
-                Navigator.pushReplacementNamed(context, "/profile");
-              },
-            ),
-            // Logout Navigation.
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text("Logout"),
-              onTap: () {
-                Navigator.pop(context); // Close the drawer.
-                Navigator.pushReplacementNamed(context, "/login");
-              },
-            ),
-          ],
-        ),
-      ),
+      // Light blue-ish background
+      backgroundColor: const Color(0xFFEAF3FB),
       appBar: AppBar(
-        backgroundColor: Colors.white, // AppBar background set to white.
+        backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.black),
+          onPressed: () {
+            // Open drawer or do something else
+          },
+        ),
         centerTitle: true,
         title: const Text(
-          "Home",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        // Use a Builder to get a proper context for opening the drawer.
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-              size: 30,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
+          'HOME',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              color: Colors.black,
-              size: 30,
-            ),
+            icon: const Icon(Icons.person, color: Colors.black),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, "/profile");
+              // Navigate to profile or do something else
             },
           ),
         ],
       ),
-      body: Column(
-        children: [
-          // Redesigned header area with a light gradient, drop shadow, and animation.
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.white, Colors.grey.shade100],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  blurRadius: 6,
-                  offset: const Offset(0, 3),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            Column(
+              children: [
+                // Placeholder for your logo image.
+                // Replace 'assets/logo.png' with the actual path to your image.
+                SizedBox(
+                  height: 64,
+                  child: Image.asset(
+                    'assets/infra_track_logo',
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ],
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-            child: Center(
-              child: TweenAnimationBuilder<double>(
-                tween: Tween<double>(begin: 0, end: 1),
-                duration: const Duration(milliseconds: 800),
-                curve: Curves.easeOutBack,
-                builder: (context, value, child) {
-                  return Transform.scale(
-                    scale: value,
-                    child: child,
-                  );
-                },
-                child: Image.asset(
-                  'assets/png/logo2.png',
-                  height: 150,
+                const SizedBox(height: 8),
+                const Text(
+                  'INFRA TRACK',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF2C3E50),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Expanded List of Issue Cards.
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              children: const [
-                IssueCard(
-                  title: "Pothole in Nugegoda",
-                  description:
-                      "A blocked drainage system in Kohuwala is leading to waterlogging during rains.",
-                  initialLikes: 10,
-                  initialDislikes: 2,
-                ),
-                IssueCard(
-                  title: "Overgrown Tree",
-                  description:
-                      "The tree is obstructing the road and needs trimming for safety.",
-                  initialLikes: 15,
-                  initialDislikes: 1,
-                ),
-                IssueCard(
-                  title: "Broken Streetlight",
-                  description:
-                      "The streetlight near the main square is not functioning, creating safety concerns.",
-                  initialLikes: 8,
-                  initialDislikes: 0,
+                const SizedBox(height: 4),
+                const Text(
+                  'ONE ROAD AT A TIME',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF2C3E50),
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 24),
+            // High Priority Issues
+            _PriorityCard(
+              label: 'High Priority Issues',
+              circleColor: Colors.red,
+              icon: Icons.error,
+              onTap: () {
+                // Navigate / do something
+              },
+            ),
+            // Mid Priority Issues
+            _PriorityCard(
+              label: 'Mid Priority Issues',
+              circleColor: Colors.yellow,
+              icon: Icons.priority_high,
+              onTap: () {
+                // Navigate / do something
+              },
+            ),
+            // Low Priority Issues
+            _PriorityCard(
+              label: 'Low Priority Issues',
+              circleColor: Colors.green,
+              icon: Icons.check_circle,
+              onTap: () {
+                // Navigate / do something
+              },
+            ),
+            const SizedBox(height: 32),
+          ],
+        ),
       ),
-      // Bottom Navigation Bar.
+      // Use the custom BottomNavigation widget:
       bottomNavigationBar: BottomNavigation(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
@@ -204,173 +143,218 @@ class HomeScreenState extends State<HomeScreen> {
   }
 }
 
-//-------------------
-// IssueCard Widget with onTap navigating to "/issue_nearby"
-//-------------------
-class IssueCard extends StatefulWidget {
-  final String title;
-  final String description;
-  final int initialLikes;
-  final int initialDislikes;
+class _PriorityCard extends StatelessWidget {
+  final String label;
+  final Color circleColor;
+  final IconData icon;
+  final VoidCallback onTap;
 
-  const IssueCard({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.initialLikes,
-    required this.initialDislikes,
-  });
-
-  @override
-  State<IssueCard> createState() => _IssueCardState();
-}
-
-class _IssueCardState extends State<IssueCard> {
-  late int likes;
-  late int dislikes;
-  bool isLiked = false;
-  bool isDisliked = false;
-
-  @override
-  void initState() {
-    super.initState();
-    likes = widget.initialLikes;
-    dislikes = widget.initialDislikes;
-  }
-
-  void _toggleLike() {
-    setState(() {
-      if (isLiked) {
-        likes--;
-        isLiked = false;
-      } else {
-        likes++;
-        isLiked = true;
-        if (isDisliked) {
-          dislikes--;
-          isDisliked = false;
-        }
-      }
-    });
-  }
-
-  void _toggleDislike() {
-    setState(() {
-      if (isDisliked) {
-        dislikes--;
-        isDisliked = false;
-      } else {
-        dislikes++;
-        isDisliked = true;
-        if (isLiked) {
-          likes--;
-          isLiked = false;
-        }
-      }
-    });
-  }
+  const _PriorityCard({
+    Key? key,
+    required this.label,
+    required this.circleColor,
+    required this.icon,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      color: const Color(0xFF2C3E50),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        decoration: BoxDecoration(
+          color: const Color(0xFF2C3E50),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: circleColor,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: Colors.white, size: 16),
+            ),
+          ],
+        ),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(15),
-        onTap: () {
-          Navigator.pushNamed(context, "/issue_nearby");
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    );
+  }
+}
+
+// Dummy screen to show if FAB is tapped to add a report
+class AddReportScreen extends StatelessWidget {
+  const AddReportScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Add Report'),
+      ),
+      body: const Center(
+        child: Text('Add Report Screen'),
+      ),
+    );
+  }
+}
+
+// BELOW IS YOUR BOTTOM NAVIGATION WIDGET EXACTLY AS GIVEN:
+
+class BottomNavigation extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onItemTapped;
+
+  const BottomNavigation({
+    super.key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      // Ensures the nav bar doesn't overlap system UI elements
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        height: 90,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFFFFFFFF), Color(0xFFEBF8FF)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(35),
+            topRight: Radius.circular(35),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 15,
+              offset: const Offset(0, -3),
+            ),
+          ],
+        ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            // Row with two interactive nav items.
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Decorative vertical accent bar.
-                Container(
-                  width: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    gradient: const LinearGradient(
-                      colors: [Colors.orangeAccent, Colors.amber],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
+                NavItem(
+                  icon: Icons.home,
+                  label: "Home",
+                  isSelected: selectedIndex == 0,
+                  onTap: () => onItemTapped(0),
                 ),
-                const SizedBox(width: 12),
-                // Issue Details Column.
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title.
-                      Text(
-                        widget.title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      // Description.
-                      Text(
-                        widget.description,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.white70,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 16),
-                // Like and Dislike Buttons Column.
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: _toggleLike,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.thumb_up,
-                            color: isLiked ? Colors.greenAccent : Colors.white,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            "$likes",
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: _toggleDislike,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.thumb_down,
-                            color: isDisliked ? Colors.redAccent : Colors.white,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            "$dislikes",
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                NavItem(
+                  icon: Icons.timelapse, // Modern icon for history
+                  label: "History",
+                  isSelected: selectedIndex == 1,
+                  onTap: () => onItemTapped(1),
                 ),
               ],
             ),
-          ),
+            // Center FAB positioned to overlap the nav bar.
+            Positioned(
+              top: -30,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: FloatingActionButton(
+                  backgroundColor: const Color(0xFF2C3E50),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/add_report");
+                  },
+                  child: const Icon(Icons.add, size: 36, color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NavItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const NavItem({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+        width: 80,
+        height: 60,
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFF2C3E50) : Colors.transparent,
+          borderRadius: BorderRadius.circular(30),
+          border: isSelected
+              ? null
+              : Border.all(color: const Color(0xFF2C3E50), width: 2),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedScale(
+              scale: isSelected ? 1.2 : 1.0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+              child: Icon(
+                icon,
+                color: isSelected ? Colors.white : const Color(0xFF2C3E50),
+                size: 28,
+              ),
+            ),
+            const SizedBox(height: 4),
+            AnimatedDefaultTextStyle(
+              duration: const Duration(milliseconds: 300),
+              style: TextStyle(
+                color: isSelected ? Colors.white : const Color(0xFF2C3E50),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+              child: Text(label),
+            ),
+          ],
         ),
       ),
     );
