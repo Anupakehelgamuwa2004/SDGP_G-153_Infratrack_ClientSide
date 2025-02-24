@@ -14,8 +14,13 @@ class InfraTrackApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
       routes: {
+        // Existing route for adding a new report
         '/add_report': (context) => const AddReportScreen(),
-        // Add other routes/screens if needed
+
+        // New routes for High, Mid, and Low priority screens
+        '/high_priority': (context) => const HighPriorityScreen(),
+        '/mid_priority': (context) => const MidPriorityScreen(),
+        '/low_priority': (context) => const LowPriorityScreen(),
       },
     );
   }
@@ -74,30 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Column(
               children: [
-                // Placeholder for your logo image.
-                // Replace 'assets/logo.png' with the actual path to your image.
+                // Use the full path including .png
                 SizedBox(
                   height: 64,
                   child: Image.asset(
-                    'assets/infra_track_logo',
+                    'assets/infra_track_logo.png',
                     fit: BoxFit.contain,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'INFRA TRACK',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2C3E50),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  'ONE ROAD AT A TIME',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF2C3E50),
                   ),
                 ),
               ],
@@ -109,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               circleColor: Colors.red,
               icon: Icons.error,
               onTap: () {
-                // Navigate / do something
+                Navigator.pushNamed(context, "/Government_issue_screen_high");
               },
             ),
             // Mid Priority Issues
@@ -118,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
               circleColor: Colors.yellow,
               icon: Icons.priority_high,
               onTap: () {
-                // Navigate / do something
+                Navigator.pushNamed(context, "/Government_issue_screen_mid");
               },
             ),
             // Low Priority Issues
@@ -127,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               circleColor: Colors.green,
               icon: Icons.check_circle,
               onTap: () {
-                // Navigate / do something
+                Navigator.pushNamed(context, "/Government_issue_screen_low");
               },
             ),
             const SizedBox(height: 32),
@@ -356,6 +343,56 @@ class NavItem extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Below are example placeholders for High, Mid, and Low priority screens.
+// If you already have these screens in separate files, import and use them.
+class HighPriorityScreen extends StatelessWidget {
+  const HighPriorityScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('High Priority Issues'),
+      ),
+      body: const Center(
+        child: Text('High Priority Issues Screen'),
+      ),
+    );
+  }
+}
+
+class MidPriorityScreen extends StatelessWidget {
+  const MidPriorityScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mid Priority Issues'),
+      ),
+      body: const Center(
+        child: Text('Mid Priority Issues Screen'),
+      ),
+    );
+  }
+}
+
+class LowPriorityScreen extends StatelessWidget {
+  const LowPriorityScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Low Priority Issues'),
+      ),
+      body: const Center(
+        child: Text('Low Priority Issues Screen'),
       ),
     );
   }

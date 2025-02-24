@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sdgp_infratrack_clone/screens/Gov_issue_description.dart';
-import 'package:sdgp_infratrack_clone/screens/Government_issue_screen_high.dart';
-import 'package:sdgp_infratrack_clone/screens/Government_issue_screen_low.dart';
-import 'package:sdgp_infratrack_clone/screens/Government_issue_screen_mid.dart';
-import 'package:sdgp_infratrack_clone/screens/home.dart';
-import 'package:sdgp_infratrack_clone/screens/login.dart';
+import 'package:infratrack/screens/Gov_issue_description.dart';
+import 'package:infratrack/screens/Government_issue_screen_high.dart';
+import 'package:infratrack/screens/Government_issue_screen_low.dart';
+import 'package:infratrack/screens/Government_issue_screen_mid.dart';
+import 'package:infratrack/screens/home.dart';
+import 'package:infratrack/screens/login.dart';
+
 
 // Placeholder for Reset Password
 
