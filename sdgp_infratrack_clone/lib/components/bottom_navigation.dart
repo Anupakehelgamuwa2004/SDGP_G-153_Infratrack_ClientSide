@@ -53,7 +53,7 @@ class BottomNavigation extends StatelessWidget {
               child: FloatingActionButton(
                 backgroundColor: navColor,
                 onPressed: () {
-                  Navigator.pushNamed(context, "/add_report");
+                  Navigator.pushNamed(context, "/incoming");
                 },
                 shape: const CircleBorder(),
                 child: Stack(
