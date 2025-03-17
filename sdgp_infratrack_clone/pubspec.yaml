@@ -26,6 +26,7 @@ flutter:
 
   assets:
     - assets/infra_track_logo.png
+    - assets/img_rectangle_28.png
     
 
 

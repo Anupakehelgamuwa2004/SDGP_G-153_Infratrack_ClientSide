@@ -30,12 +30,12 @@ class MyApp extends StatelessWidget {
       home: const LoginScreen(), // Default starting screen
       routes: {
         "/login": (context) => const LoginScreen(),
-        "/home": (context) => HomeScreen(),
+        "/home": (context) => const HomeScreen(),
         "/issue_description": (context) =>
             const GovernmentIssueDescriptionScreen(),
         "/Gov_high": (context) => const GovernmentIssueScreenHigh(),
-        "/Gov_Low": (context) => const GovernmentIssueScreenLow(),
-        "/Gov_Mid": (context) => const GovernmentIssueScreenMid(),
+        "/Gov_mid": (context) => const GovernmentIssueScreenMid(),
+        "/Gov_low": (context) => const GovernmentIssueScreenLow(),
       },
     );
   }

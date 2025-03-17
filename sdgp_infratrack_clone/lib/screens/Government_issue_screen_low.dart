@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:infratrack/components/bottom_navigation.dart';
 
-
-
-class GovernmentIssueScreenLow extends StatelessWidget {
+class GovernmentIssueScreenLow extends StatefulWidget {
   const GovernmentIssueScreenLow({super.key});
+
+  @override
+  _GovernmentIssueScreenLowState createState() =>
+      _GovernmentIssueScreenLowState();
+}
+
+class _GovernmentIssueScreenLowState extends State<GovernmentIssueScreenLow> {
+  int _selectedIndex = 0; // Track the selected index
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    // Navigate to different screens based on the selected index
+    if (index == 0) {
+      Navigator.pushNamed(context, "/home"); // Example navigation
+    } else if (index == 1) {
+      Navigator.pushNamed(context, "/history"); // Example navigation
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +33,9 @@ class GovernmentIssueScreenLow extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, "/home");
+          },
         ),
         actions: [
           IconButton(
@@ -43,8 +63,8 @@ class GovernmentIssueScreenLow extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/png/logo2.png',
-                    height: 100,
+                    'assets/infra_track_logo.png',
+                    height: 200,
                   ),
                   const SizedBox(height: 50),
                   _buildIssueButton(context, "Issue 1"),
@@ -61,10 +81,8 @@ class GovernmentIssueScreenLow extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigation(
-        selectedIndex: 0,
-        onItemTapped: (index) {
-          // Handle navigation changes
-        },
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
@@ -74,7 +92,7 @@ class GovernmentIssueScreenLow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: SizedBox(
         width: MediaQuery.of(context).size.width *
-            0.65, // Custom width 85% of screen
+            0.65, // Custom width 65% of screen
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF2C3E50),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infratrack/components/bottom_navigation.dart';
 
-
-
 class GovernmentIssueScreenMid extends StatelessWidget {
   const GovernmentIssueScreenMid({super.key});
 
@@ -15,7 +13,9 @@ class GovernmentIssueScreenMid extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, "/home");
+          },
         ),
         actions: [
           IconButton(
@@ -43,8 +43,8 @@ class GovernmentIssueScreenMid extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/png/logo2.png',
-                    height: 100,
+                    'assets/infra_track_logo.png',
+                    height: 200,
                   ),
                   const SizedBox(height: 50),
                   _buildIssueButton(context, "Issue 1"),

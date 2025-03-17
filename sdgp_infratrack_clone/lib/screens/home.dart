@@ -95,33 +95,16 @@ class _HomeScreenState extends State<HomeScreen>
                     child: Column(
                       children: [
                         // Logo and Headings
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 50),
                         Image.asset(
-                          'assets/logo.png',
-                          height: 80,
+                          'assets/infra_track_logo.png',
+                          height: 200,
                         ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "INFRA TRACK",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF2C3E50),
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Text(
-                          "ONE ROAD AT A TIME",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF2C3E50),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 30),
 
-                        // Priority Issue Cards
+                        // Ensure Issue Cards are right below the logo
+                        const SizedBox(
+                            height:
+                                20), // Adjust this space to fine-tune the layout
                         IssueCard(
                           title: "High Priority Issues",
                           color: Colors.red,
@@ -129,7 +112,8 @@ class _HomeScreenState extends State<HomeScreen>
                           onTap: () =>
                               Navigator.pushNamed(context, "/Gov_high"),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(
+                            height: 20), // Adjust space between cards if needed
                         IssueCard(
                           title: "Mid Priority Issues",
                           color: Colors.orangeAccent,
@@ -146,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
                       ],
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),

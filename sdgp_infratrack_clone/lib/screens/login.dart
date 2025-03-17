@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.only(top: 50.0),
                 child: Column(
                   children: [
-                    Image.asset('assets/png/logo.png', height: 300),
+                    Image.asset('assets/img_rectangle_28.png', height: 300),
                     const SizedBox(height: 10),
                   ],
                 ),
@@ -57,8 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Username Field (Improved)
                       TextField(
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.person, color: Colors.white70),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                          prefixIcon:
+                              const Icon(Icons.person, color: Colors.white70),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 15),
                           filled: true,
                           fillColor: const Color(0xFF2C3E50),
                           hintText: "Username",
@@ -69,7 +71,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.white, width: 2),
+                            borderSide:
+                                const BorderSide(color: Colors.white, width: 2),
                           ),
                         ),
                         style: const TextStyle(color: Colors.white),
@@ -80,8 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextField(
                         obscureText: _obscureText,
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock, color: Colors.white70),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                          prefixIcon:
+                              const Icon(Icons.lock, color: Colors.white70),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 15),
                           filled: true,
                           fillColor: const Color(0xFF2C3E50),
                           hintText: "Password",
@@ -92,16 +97,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.white, width: 2),
+                            borderSide:
+                                const BorderSide(color: Colors.white, width: 2),
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _obscureText ? Icons.visibility_off : Icons.visibility,
+                              _obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                               color: Colors.white70,
                             ),
                             onPressed: () {
                               setState(() {
-                                _obscureText = !_obscureText; // Toggle visibility
+                                _obscureText =
+                                    !_obscureText; // Toggle visibility
                               });
                             },
                           ),
@@ -132,7 +141,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 15),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
